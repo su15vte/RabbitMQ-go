@@ -88,7 +88,7 @@ func (r *RabbitMQ) ConsumeSimple() {
 		nil,   //额外的处理
 	)
 	r.ErrorHandling(err, "failed to consumesimple")
-	msgs, err := r.channel.Consume(
+	msg, err := r.channel.Consume(
 		q.Name,
 		"",
 		true,  //是否自动应答
@@ -102,7 +102,7 @@ func (r *RabbitMQ) ConsumeSimple() {
 	}
 	forever := make(chan bool)
 	go func() {
-		for d := range msgs {
+		for d := range msg {
 			log.Printf("收到一条信息消息：%s:%s", d.AppId, d.Body)
 		}
 	}()
