@@ -45,16 +45,18 @@ func main() {
 // }
 
 func TopicSend() {
-	mq1 := rbmq.NewRabbitMQTopic("topictest2", "su15vte.topic.one")
+	mq1 := rbmq.NewRabbitMQTopic("topicmq", "su15vte.topic.one")
 	mq2 := rbmq.NewRabbitMQTopic("topicmq", "su15vte.topic.two")
 	for i := 0; i <= 100; i++ {
-		mq1.PublishRouting("Hello mq1!!!" + strconv.Itoa(i))
-		mq2.PublishRouting("Hello mq2!!!" + strconv.Itoa(i))
+		mq1.PublishTopic("Hello mq1!!!" + strconv.Itoa(i))
+		mq2.PublishTopic("Hello mq2!!!" + strconv.Itoa(i))
 		time.Sleep(1 * time.Second)
 	}
 }
 
 func TopicRecieve() {
-	mq1 := rbmq.NewRabbitMQTopic("topictest2", "#")
+	mq1 := rbmq.NewRabbitMQTopic("topicmq", "#")
+	mq2 := rbmq.NewRabbitMQTopic("topicmq", "su.*")
 	mq1.RecieveTopic()
+	mq2.RecieveTopic()
 }

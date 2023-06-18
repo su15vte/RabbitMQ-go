@@ -27,7 +27,7 @@ func (r *RabbitMQ) PublishTopic(msg string) {
 		false,
 		nil,
 	)
-	r.ErrorHandling(err, "declare ERROR123")
+	r.ErrorHandling(err, "declare ERROR")
 	err = r.channel.Publish(
 		r.Exchange,
 		r.Key,

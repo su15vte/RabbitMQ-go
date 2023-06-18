@@ -52,7 +52,7 @@ func (r *RabbitMQ) RecieveRouting() {
 		nil,
 	)
 
-	r.ErrorHandling(err, "declare ERROR")
+	r.ErrorHandling(err, "declare ERROR1234")
 	q, err := r.channel.QueueDeclare(
 		"",
 		false,
